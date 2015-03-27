@@ -1,0 +1,24 @@
+{
+  "name": "sattan-node",
+  "version": "1.0.0",
+  "description": "nodejs webapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KayOnline/sattan-node.git"
+  },
+  "author": "Kay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KayOnline/sattan-node/issues"
+  },
+  "homepage": "https://github.com/KayOnline/sattan-node",
+  "dependencies": {
+    "express": "^4.12.3",
+    "log4js": "^0.6.22",
+    "moment": "^2.9.0"
+  }
+}
