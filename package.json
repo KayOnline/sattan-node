@@ -19,6 +19,7 @@
   "dependencies": {
     "express": "^4.12.3",
     "log4js": "^0.6.22",
+    "mocha-lcov-reporter": "0.0.2",
     "moment": "^2.9.0",
     "mongoose": "^4.0.1"
   },
@@ -26,6 +27,7 @@
     "node": "0.10.x"
   },
   "devDependencies": {
+    "coveralls": "^2.11.2",
     "istanbul": "^0.3.11",
     "mocha": "^2.2.1",
     "supertest": "^0.15.0"
