@@ -31,6 +31,13 @@ app.get('/', function(request, response) {
   response.send('Hello World!');
 });
 
+app.get('/square', function(request, response) {
+  response.send(String(Math.pow(request.query.n, 2)));
+});
+
+module.exports = app;
+
 app.listen(app.get('port'), function() {
   console.log("Node app is running at localhost:" + app.get('port'));
 });
+
