@@ -1,7 +1,7 @@
 {
   "name": "sattan-node",
   "version": "1.0.0",
-  "description": "nodejs webapp",
+  "description": "sattan nodejs webapp",
   "main": "index.js",
   "scripts": {
     "test": "node index.js"
@@ -21,5 +21,8 @@
     "log4js": "^0.6.22",
     "moment": "^2.9.0",
     "mongoose": "^4.0.1"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
