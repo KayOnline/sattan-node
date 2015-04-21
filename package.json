@@ -1,35 +1,17 @@
 {
   "name": "sattan-node",
   "version": "1.0.0",
-  "description": "sattan nodejs webapp",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "mocha"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/KayOnline/sattan-node.git"
-  },
-  "author": "Kay",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/KayOnline/sattan-node/issues"
-  },
-  "homepage": "https://github.com/KayOnline/sattan-node",
   "dependencies": {
-    "express": "^4.12.3",
-    "log4js": "^0.6.22",
-    "mocha-lcov-reporter": "0.0.2",
-    "moment": "^2.9.0",
-    "mongoose": "^4.0.1"
-  },
-  "engines": {
-    "node": "0.10.x"
-  },
-  "devDependencies": {
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.3.11",
-    "mocha": "^2.2.1",
-    "supertest": "^0.15.0"
+    "body-parser": "~1.12.0",
+    "cookie-parser": "~1.3.4",
+    "debug": "~2.1.1",
+    "express": "~4.12.2",
+    "jade": "~1.9.2",
+    "morgan": "~1.5.1",
+    "serve-favicon": "~2.2.0"
   }
 }
