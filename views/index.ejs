@@ -5,7 +5,7 @@ Released for free under a Creative Commons Attribution 3.0 License
 -->
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Home</title>
+<title><%= title %></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <!-- CuFon: Enables smooth pretty custom font rendering. 100% SEO friendly. To disable, remove this section -->
@@ -16,22 +16,7 @@ Released for free under a Creative Commons Attribution 3.0 License
 </head>
 <body>
 <div class="main">
-
-  <div class="header">
-    <div class="header_resize">
-      <div class="logo"><h1><a href="index.html">Kay Blog</a></h1></div>
-      <div class="menu_nav">
-        <ul>
-          <li class="active"><a href="/index">Home</a></li>
-          <li><a href="/support">Support</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/contact">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="clr"></div>
-    </div>
-  </div>
+    <%- include('module/header'); -%>
 
   <div class="content">
     <div class="content_resize">
@@ -113,11 +98,8 @@ which means that you are free to use it for any personal or commercial purpose p
       <div class="clr"></div>
     </div>
   </div>
-  <div class="footer">
-    <!--<div class="footer_resize">
-      <p class="lf">&copy; Copyright Kay.</p>
-    </div>-->
-  </div>
+    <%- include('module/footer'); -%>  
+  
 </div>
 </body>
 </html>

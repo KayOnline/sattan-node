@@ -74,9 +74,9 @@ ul.ex_menu li a:hover { text-decoration:none;}
 
 /* footer */
 .footer { background:url(/images/global_bg.jpg) repeat center center;}
-.footer_resize { margin:0 auto; padding:26px; width:922px; background:url(/images/footer_bg.gif) repeat-x center top;}
-.footer p.lf { margin:0; padding:4px 0; float:right; width:auto; line-height:1.5em;}
-.footer p.lf a { color:#62bee3;}
+.footer_resize { margin:0 auto; width:922px; background:url(/images/footer_bg.gif) repeat-x center top;}
+.footer p.lf { margin:0; padding:4px 0; width:auto; line-height:1.5em; text-align:center;}
+/*.footer p.lf a { color:#62bee3;}*/
 ul.fmenu { margin:0; padding:2px 0; list-style:none; float:left; width:auto;}
 ul.fmenu li { margin:0; padding:0 8px 0 0; float:left;}
 ul.fmenu li a { color:#959595; text-decoration:none; padding:6px 16px;}
