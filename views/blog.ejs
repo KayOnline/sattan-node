@@ -17,22 +17,8 @@ Released for free under a Creative Commons Attribution 3.0 License
 <body>
 <script src="/gg_bd_temp_ad_720x90.js" type="text/javascript"></script>
 <div class="main">
-
-  <div class="header">
-    <div class="header_resize">
-      <div class="logo"><h1><a href="index.html">classiclink</a> <small>put your slogan here</small></h1></div>
-      <div class="menu_nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="support.html">Support</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li class="active"><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
-        </ul>
-      </div>
-      <div class="clr"></div>
-    </div>
-  </div>
+  
+  <%- include('module/header'); -%>
 
   <div class="content">
     <div class="content_resize">
@@ -143,18 +129,9 @@ Released for free under a Creative Commons Attribution 3.0 License
       <div class="clr"></div>
     </div>
   </div>
-  <div class="footer">
-    <div class="footer_resize">
-      <p class="lf">&copy; Copyright <a href="#">MyWebSite</a>. Collect From <a href="http://www.cssmoban.com/" title="网页素材">网页素材</a></p>
-      <ul class="fmenu">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="support.html">Support</a></li>
-        <li class="active"><a href="blog.html">Blog</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contacts</a></li>
-      </ul>
-      <div class="clr"></div>
-    </div>
+
+  <%- include('module/footer'); -%>
+
   </div>
 </div>
 </body>
