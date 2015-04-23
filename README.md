@@ -1,6 +1,6 @@
 # sattan-node
 [![build status][travis-image]][travis-url]
-[![Coverage Status][coverage-image]](coverage-url)
+[![Coverage Status][coverage-image]][coverage-url]
 [![node version][node-image]][node-url]
 [![Dependency Status][david-image]][david-url]
 [david-image]: https://david-dm.org/KayOnline/sattan-node.svg?style=flat-square
@@ -12,5 +12,5 @@
 [node-image]: https://img.shields.io/badge/node.js-%3E=_0.10-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
 
-
-
+Welcome to Sattan-node 1.0!  
+sattan-node is a blog written by [Node.js](https://nodejs.org/).
