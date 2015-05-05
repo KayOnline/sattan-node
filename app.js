@@ -1,9 +1,12 @@
 var express = require('express');
+var fs = require('fs');
 var path = require('path');
 var favicon = require('serve-favicon');
-var logger = require('morgan');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var flash = require('flash');
 
 var login = require('./routes/login');
 var index = require('./routes/index');
@@ -14,19 +17,34 @@ var contact = require('./routes/contact');
 
 var app = express();
 
+// global variables
+global.__base = __dirname + '/';
+
 // view engine setup
 app.engine('ejs', require('express-beautiful-ejs-engine'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// middleware
+// Log Stream
+var accessLogStream = fs.createWriteStream(__dirname + '/logs/access.log', {flags: 'a'});
+var errorLogfile    = fs.createWriteStream(__dirname + '/logs/error.log', {flags: 'a'});
+
+// Middleware
 app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
+app.use(morgan('dev', {
+    stream: accessLogStream
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: "recommand 128 bytes random string",
+    cookie: {maxAge: 60 * 1000}
+}));
+app.use(flash());
 
+// Routes
 app.use('/', index);
 app.use('/index', index);
 app.use('/login', login);
@@ -56,6 +74,12 @@ if (app.get('env') === 'development') {
   });
 }
 
+app.use(function(err, req, res, next){
+    var meta = '[' + new Date() + '] ' + req.url + '\n';
+        errorLogfile.write(meta + err.stack + '\n');
+            next();
+            });
+
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
@@ -65,6 +89,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
