@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('flash');
+var config = require('./config');
 
 var login = require('./routes/login');
 var index = require('./routes/index');
@@ -39,7 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-    secret: "recommand 128 bytes random string",
+    secret: config.secret,
     cookie: {maxAge: 60 * 1000}
 }));
 app.use(flash());
