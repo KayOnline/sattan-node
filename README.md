@@ -3,8 +3,8 @@
 [![Coverage Status][coverage-image]][coverage-url]
 [![node version][node-image]][node-url]
 [![Dependency Status][david-image]][david-url]
-[david-image]: https://david-dm.org/KayOnline/sattan-node.svg?style=flat-square
-[david-url]: https://david-dm.org/KayOnline/sattan-node
+[david-image]: https://david-dm.org/KayOnline/sattan-nodejs.svg?style=flat-square
+[david-url]: https://david-dm.org/KayOnline/sattan-nodejs
 [travis-image]: https://travis-ci.org/KayOnline/sattan-node.svg?branch=master
 [travis-url]: https://travis-ci.org/KayOnline/sattan-node
 [coverage-image]:https://coveralls.io/repos/KayOnline/sattan-node/badge.svg
