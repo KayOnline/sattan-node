@@ -13,4 +13,4 @@
 [node-url]: http://nodejs.org/download/
 
 Welcome to Sattan-node 1.0!  
-sattan-node is a blog written by [Node.js](https://nodejs.org/).
+ - sattan-node is a blog written by [Node.js](https://nodejs.org/).
