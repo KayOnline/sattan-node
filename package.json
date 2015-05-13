@@ -1,7 +1,6 @@
 {
   "name": "sattan-node",
   "version": "1.0.0",
-  "private": false,
   "scripts": {
     "start": "node ./bin/www"
   },
