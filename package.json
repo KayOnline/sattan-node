@@ -16,11 +16,11 @@
     "flash": "^1.1.0",
     "morgan": "~1.5.1",
     "password-hash-and-salt": "^0.1.2",
-    "serve-favicon": "^2.2.0"
+    "serve-favicon": "^2.2.0",
+    "log4js": "^0.6.24"
   },
   "devDependencies": {
     "chai": "^2.3.0",
-    "log4js": "^0.6.24",
     "mocha": "^2.2.4",
     "should": "^6.0.1"
   }
