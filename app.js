@@ -7,7 +7,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('flash');
-var config = require('./config');
+
+var config = require('./conf/config');
 
 var login = require('./routes/login');
 var index = require('./routes/index');

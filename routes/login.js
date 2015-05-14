@@ -1,8 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var debug = require('debug')('microblog:server');
-var log4js = require('log4js');
-var logger = log4js.getLogger(__filename);
+var logger = require('log4js').getLogger(__filename);
 var crypto = require('crypto');
 
 router.get('/', function(req, res, next) {
@@ -14,17 +12,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-   var email = req.body.email;
-   var password = req.body.password;
+    var email = req.body.email;
+    var password = req.body.password;
 
-   if (email == '21156929@qq.com' && password == '123') {
+    if (email == '21156929@qq.com' && password == '123') {
         //res.cookie('uid', email, {maxAge: 60 * 1000});
         req.session.uid = email;
         res.redirect('/index');
-   } else {
+    } else {
         //req.flash('error', 'login failure!');
         res.render('login', {title: 'login'});
-   }
+    }
 });
 
 module.exports=router;

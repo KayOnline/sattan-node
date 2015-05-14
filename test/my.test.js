@@ -21,3 +21,4 @@ console.log(scope); // 输出 f1
 };
 f();
 
+
