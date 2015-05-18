@@ -23,9 +23,9 @@ var app = express();
 global.__base = __dirname + '/';
 
 // view engine setup
-app.engine('ejs', require('express-beautiful-ejs-engine'));
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 // Log Stream
 var accessLogStream = fs.createWriteStream(__dirname + '/logs/access.log', {flags: 'a'});

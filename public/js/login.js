@@ -8,14 +8,18 @@ var Login = (function(jq) {
 		login: function() {
 			var params = {
 				email : jq('#inputEmail').val(),
-				passwd: jq('#inputPassword').val()
+				password: jq('#inputPassword').val()
 			};
 			$.ajax({
 			  	type: type,
-				url: url,
+				 url: url,
 				data: params,
 				success: function(data) {
-					console.info(data.title);
+					if (data.code == 0) {
+						window.location.href = "/index";
+					} else {
+						alert(data.msg);
+					}
 				},
 				dataType: dataType
 			});
