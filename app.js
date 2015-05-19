@@ -13,7 +13,7 @@ var config = require('./conf/config');
 var login = require('./routes/login');
 var index = require('./routes/index');
 var about = require('./routes/about');
-var blog = require('./routes/blog');
+var blog  = require('./routes/blog');
 var support = require('./routes/support');
 var contact = require('./routes/contact');
 

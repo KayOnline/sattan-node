@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
+
     var email = req.body.email;
     var password = req.body.password;
 
@@ -36,6 +37,7 @@ router.post('/', function(req, res, next) {
             return res.json({"code" : 1, "msg" : "登录认证失败！"});
         }
     });
+    
 });
 
 module.exports=router;
