@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var config = require('../conf/config');
+var config = require('../conf/config.js');
 var logger = require('log4js').getLogger(__filename);
 
 // Create Connection
@@ -14,9 +14,6 @@ exports.Topic = conn.model('Topic', require('./topic'));
 exports.Reply = conn.model('Reply', require('./reply'));
 exports.TopicCollect = conn.model('TopicCollect', require('./topic_collect'));
 exports.Message = conn.model('Message', require('./message'));
-
-
-
 
 /*mongoose.disconnect(function(err) {
 	if (err) {
