@@ -1,10 +1,30 @@
 var router = require('express').Router();
 var logger = require('log4js').getLogger(__filename);
+var async = require('async');
 var config = require('../conf/config');
 var cryptoHelper = require('../lib/cryptohelper');
-var async = require('async');
+var userRepository = require("../repository/userRepository");
+
+router.get('/reg', function(req, res, next) {
+    return res.render('reg', {title: 'login'});
+});
+
+router.post('/reg', function(req, res, next) {
+    var username = req.body.username;
+    var email = req.body.email;
+    var password = req.body.password;
+
+    cryptoHelper.pbkdf2(password, "", function(err, hashPwd, salt) {
+        if (err) return res.render('reg_result', {msg: '注册失败！'});
+        userRepository.saveUser(email, username, hashPwd, salt, false, function(err, obj) {
+            if (err) return res.render('reg_result', {msg: '注册失败！'});
+            return res.render('reg_result', {msg: '注册成功！'});
+        });
+    });
+});
 
 router.get('/', function(req, res, next) {
+    console.info("A PATH");
     if (req.session.uid) {
         return res.redirect('/index');
     } else {
@@ -39,5 +59,6 @@ router.post('/', function(req, res, next) {
     });
     
 });
+
 
 module.exports=router;

@@ -10,12 +10,6 @@ var flash = require('flash');
 
 var config = require('./conf/config');
 
-var login = require('./routes/login');
-var index = require('./routes/index');
-var about = require('./routes/about');
-var blog  = require('./routes/blog');
-var support = require('./routes/support');
-var contact = require('./routes/contact');
 
 var app = express();
 
@@ -47,13 +41,18 @@ app.use(session({
 app.use(flash());
 
 // Routes
-app.use('/', index);
-app.use('/index', index);
+var login = require('./routes/login');
+var index = require('./routes/index');
+var about = require('./routes/about');
+var blog  = require('./routes/blog');
+var support = require('./routes/support');
+var contact = require('./routes/contact');
+app.use(['/', '/index*'], index);
 app.use('/login', login);
-app.use('/about', about);
-app.use('/support', support);
-app.use('/contact', contact);
-app.use('/blog', blog);
+app.use('/about*', about);
+app.use('/support*', support);
+app.use('/contact*', contact);
+app.use('/blog*', blog);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

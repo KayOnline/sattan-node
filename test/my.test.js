@@ -21,4 +21,10 @@ console.log(scope); // 输出 f1
 };
 f();
 
+var crypto = require("crypto");
+function md5 (text) {
+  return crypto.createHash('md5').update(text).digest('hex');
+};
 
+var emailHash = md5('kay21156929@gmail.com');
+console.info(emailHash);
