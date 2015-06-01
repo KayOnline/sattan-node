@@ -6,7 +6,7 @@ var Login = (function(jq) {
 
 	return {
 		init : function() {
-			jq("#")
+			
 		},
 		login: function() {
 			var params = {
