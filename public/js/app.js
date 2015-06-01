@@ -5,6 +5,9 @@ var Login = (function(jq) {
 	var dataType = 'json';
 
 	return {
+		init : function() {
+			jq("#")
+		},
 		login: function() {
 			var params = {
 				email : jq('#inputEmail').val(),

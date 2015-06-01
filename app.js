@@ -28,31 +28,34 @@ var errorLogfile    = fs.createWriteStream(__dirname + '/logs/error.log', {flags
 // Middleware
 app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(morgan('dev', {
-    stream: accessLogStream
+  stream: accessLogStream
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-    secret: config.secret,
-    cookie: {maxAge: 60 * 1000}
+  secret: config.secret,
+  cookie: {maxAge: 60 * 1000}
 }));
 app.use(flash());
 
 // Routes
+var reg = require("./routes/reg");
 var login = require('./routes/login');
 var index = require('./routes/index');
 var about = require('./routes/about');
 var blog  = require('./routes/blog');
 var support = require('./routes/support');
 var contact = require('./routes/contact');
-app.use(['/', '/index*'], index);
+app.use('/', index);
+app.use('/index', index);
 app.use('/login', login);
 app.use('/about*', about);
 app.use('/support*', support);
 app.use('/contact*', contact);
 app.use('/blog*', blog);
+app.use('/reg', reg);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -76,10 +79,10 @@ if (app.get('env') === 'development') {
 }
 
 app.use(function(err, req, res, next){
-    var meta = '[' + new Date() + '] ' + req.url + '\n';
-        errorLogfile.write(meta + err.stack + '\n');
-            next();
-            });
+  var meta = '[' + new Date() + '] ' + req.url + '\n';
+  errorLogfile.write(meta + err.stack + '\n');
+  next();
+});
 
 // production error handler
 // no stacktraces leaked to user
