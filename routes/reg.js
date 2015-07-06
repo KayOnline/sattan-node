@@ -13,12 +13,22 @@ router.post('/', function(req, res, next) {
     var email = req.body.email;
     var password = req.body.password;
 
-    cryptoHelper.pbkdf2(password, null, function(err, hashPwd, salt) {
+    if (!username || !email || !password) {
+      return res.render('reg_result', {msg: '注册信息不完整！'})
+    }
+
+    userRepository.findUser({
+      "email" : email
+    }, function(err, item) {
+      if (err) return res.render('reg_result', {msg: '注册失败！'});
+      if (item) return res.render('reg_result', {msg: '邮箱已被注册！'});
+      cryptoHelper.pbkdf2(password, null, function(err, hashPwd, salt) {
         if (err) return res.render('reg_result', {msg: '注册失败！'});
         userRepository.saveUser(email, username, hashPwd, salt, false, function(err, obj) {
             if (err) return res.render('reg_result', {msg: '注册失败！'});
             return res.render('reg_result', {msg: '注册成功！'});
         });
+      });
     });
 });
 

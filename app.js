@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var flash = require('flash');
+var moment = require('moment');
 
 var config = require('./conf/config');
 
@@ -17,9 +18,10 @@ var app = express();
 global.__base = __dirname + '/';
 
 // view engine setup
-app.engine('html', require('ejs').renderFile);
+app.engine('html', require("ejs").renderFile);
 app.set('view engine', 'html');
 app.set('views', path.join(__dirname, 'views'));
+
 
 // Log Stream
 var accessLogStream = fs.createWriteStream(__dirname + '/logs/access.log', {flags: 'a'});
@@ -48,6 +50,8 @@ var about = require('./routes/about');
 var blog  = require('./routes/blog');
 var support = require('./routes/support');
 var contact = require('./routes/contact');
+var gate = require('./routes/gate');
+app.use('/*', gate);
 app.use('/', index);
 app.use('/index', index);
 app.use('/login', login);

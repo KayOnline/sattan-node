@@ -7,11 +7,12 @@ var userRepository = require("../repository/userRepository");
 
 
 router.get('/', function(req, res, next) {
-  if (req.session.uid) {
+  /*logger.debug("sssssssssssssssssssssssssss");
+  if (req.session.isLogin) {
     return res.redirect('/index');
-  } else {
+  } else {*/
     return res.render('login', {title: 'login'});
-  }
+  /*}*/
 });
 
 router.post('/', function(req, res, next) {
@@ -29,11 +30,15 @@ router.post('/', function(req, res, next) {
     if (err || !item) {
       return res.json({"code" : 1, "msg" : "用户名或密码错误！"});
     }
-    cryptoHelper.validate(password, item.hashpwd, item.salt, function(ex, isValid) {
+    cryptoHelper.compare(password, item.hashpwd, item.salt, function(ex, isValid) {
       if (err || !isValid) {
         return res.json({"code" : 1, "msg" : "用户名或密码错误！"});
       }
-      req.session.uid = email;
+
+      req.session.user = item;
+      req.session.uid = item.email;
+      req.session.isLogin = true;
+
       return res.json({"code" : 0, "msg" : "登录成功！"});
     });
   });

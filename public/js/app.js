@@ -31,3 +31,19 @@ var Login = (function(jq) {
 })($);
 
 $("#sb").on('click', Login.login);
+$(".send-mail").on('click', function() {
+	var username = $(this).parents('tr').find('td:first').text();
+	var url = '/index/sendmail?u=' + username;
+	$.ajax({
+	  	type: 'GET',
+		 url: url,
+		success: function(data) {
+			if (data.code == 0) {
+				window.location.href = "/index";
+			} else {
+				alert(data.msg);
+			}
+		},
+		dataType: 'json'
+	});
+});

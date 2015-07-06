@@ -15,3 +15,13 @@ exports.saveUser = function (email, username, hashpwd, salt, active, callback) {
 exports.findUser = function (params, callback) {
 	User.findOne(params, callback);
 }
+
+// 用户列表
+exports.findUsers = function (params, callback) {
+	User.find(params, callback);
+}
+
+// 更新用户
+exports.updateUser = function(doc, options, callback) {
+	User.findOneAndUpdate(doc, options, callback);
+}

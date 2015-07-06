@@ -22,11 +22,15 @@ var userSchema = new Schema({
 	updateTime: { type: Date, default: Date.now },
 	active: { type: Boolean, default: false },
 	accessToken: {type: String},
+	profileSize: {type: Number, default: 25},
+	token: {type: String},
+	token_tx: {type: String}
 });
 
 userSchema.virtual('avatar_url').get(function() {
 	var emailHash = crypto.createHash('md5').update(this.email).digest('hex'); 
-	var url = "http://s.gravatar.com/avatar/" + emailHash + "?s=80";
+	// s.gravatar.com
+	var url = "http://gravatar.duoshuo.com/avatar/" + emailHash + "?s=" + this.profileSize;
 	return url;
 });
 
