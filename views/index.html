@@ -52,5 +52,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="/js/app.js"></script>
+  <script src="/js/mod/tpl_profile.js"></script>
+  <script>
+    var data = {"aa":12,"bb":13};
+    var html = template('tpl_profile/profile', data);
+    console.info(html);
+    //document.getElementById('list').innerHTML = html;
+  </script>
 </body>
 </html>
