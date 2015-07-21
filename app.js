@@ -46,19 +46,11 @@ app.use(flash());
 var reg = require("./routes/reg");
 var login = require('./routes/login');
 var index = require('./routes/index');
-var about = require('./routes/about');
-var blog  = require('./routes/blog');
-var support = require('./routes/support');
-var contact = require('./routes/contact');
 var gate = require('./routes/gate');
 app.use('/*', gate);
 app.use('/', index);
 app.use('/index', index);
 app.use('/login', login);
-app.use('/about*', about);
-app.use('/support*', support);
-app.use('/contact*', contact);
-app.use('/blog*', blog);
 app.use('/reg', reg);
 
 // catch 404 and forward to error handler

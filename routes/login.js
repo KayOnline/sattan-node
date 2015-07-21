@@ -34,12 +34,13 @@ router.post('/', function(req, res, next) {
       if (err || !isValid) {
         return res.json({"code" : 1, "msg" : "用户名或密码错误！"});
       }
-
-      req.session.user = item;
-      req.session.uid = item.email;
-      req.session.isLogin = true;
-
-      return res.json({"code" : 0, "msg" : "登录成功！"});
+      item.getAvatarUrl(64, function(url) {
+        req.session.avatar = url;
+        req.session.isLogin = true; 
+        req.session.uid = item.email;
+        req.session.user = item;
+        return res.json({"code" : 0, "msg" : "登录成功！"});
+      });
     });
   });
   

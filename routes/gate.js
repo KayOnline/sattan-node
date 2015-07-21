@@ -1,26 +1,50 @@
 var express = require("express");
 var router = express.Router();
 var logger = require('log4js').getLogger(__filename);
+var config = require('../conf/config.js');
+var redis = require('redis');
+var client = redis.createClient(config.redis.port, config.redis.host);
 
 // 所有请求的入口
 router.use(function(req, res, next) {
+
 	logger.info("Welcome to The Great Gate");
-	logger.debug(req.headers);
 
 	// 解析公用请求报文参数
 	req.metaData = {
-		async: req.headers['x-requested-with'] ? true : false,
-		baseUrl: req.baseUrl
+		xhr: req.xhr,
+		baseUrl: req.baseUrl,
+		ip: req.ip
+	}
+
+	logger.debug(req.originalUrl);	
+
+	// 异步接口调用频次控制
+	if (req.xhr && req.originalUrl) {
+		var key = 'api:call:' + req.originalUrl;
+		var now = Date.now();
+		var uid = req.session.uid;
+
+		logger.debug(key);	
+
+		if (key.indexOf('/login') == -1) {
+			client.zscore(key, uid, function(ex, lastInvokedTime) {
+				if (ex) return logger.error(ex);
+				if (lastInvokedTime && (now - lastInvokedTime < 100000)) {
+					return res.status(200).json({code: 1, msg:"您的操作过于频繁!"});
+				}
+				client.zadd(key, now, uid);
+			});
+		}
 	}
 
 	// 登录检测
-	if (req.baseUrl.indexOf('reg') > -1) {
-		return next();
-	}
-	if (req.baseUrl.indexOf('login') > -1) {
+	if (req.baseUrl.indexOf('reg') > -1 ||
+		req.baseUrl.indexOf('login') > -1) {
 		return next();
 	}
 
+	// 路由
 	if(req.session.isLogin) {
 		return next();
 	} else {

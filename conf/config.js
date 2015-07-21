@@ -16,5 +16,9 @@ module.exports = {
             user: 'lsk_robot@163.com',
             pass: 'fylxmlhuiytuwytt'
         }
+    },
+    redis: {
+        host: '127.0.0.1',
+        port: 6380
     }
 };

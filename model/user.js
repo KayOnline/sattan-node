@@ -28,15 +28,18 @@ var userSchema = new Schema({
 });
 
 userSchema.virtual('avatar_url').get(function() {
-	var emailHash = crypto.createHash('md5').update(this.email).digest('hex'); 
 	// s.gravatar.com
+	var emailHash = crypto.createHash('md5').update(this.email).digest('hex'); 
 	var url = "http://gravatar.duoshuo.com/avatar/" + emailHash + "?s=" + this.profileSize;
 	return url;
 });
 
-userSchema.method('getAvatarUrl', function(cb) {
-	cb("SSSS");
-});
+userSchema.methods.getAvatarUrl = function(size, cb) {
+	// s.gravatar.com
+	var emailHash = crypto.createHash('md5').update(this.email).digest('hex'); 
+	var url = "http://gravatar.duoshuo.com/avatar/" + emailHash + "?s=" + (size ? size : this.profileSize);
+	cb(url);
+};
 
 userSchema.index({username: 1}, {unique: true});
 userSchema.index({email: 1}, {unique: true});

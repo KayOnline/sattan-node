@@ -6,8 +6,8 @@ var userRepository = require("../repository/userRepository");
 var mailHelper = require('../lib/mailhelper');
 var cryptoHelper = require('../lib/cryptohelper');
 
+
 router.get('/', function(req, res, next) {
-	logger.debug(req.metaData);
 	userRepository.findUsers({}, function(ex, items) {
 		if (ex) return logger.error(ex);
 		items.forEach(function(item) {
@@ -19,12 +19,13 @@ router.get('/', function(req, res, next) {
 			"session": req.session,
 			  "items": items
 		};
+		logger.error(req.session.avatar);
 	  	res.render('index', data);
 	});
 });
 
 router.get('/sendmail', function(req, res, next) {
-	logger.debug(req.metaData);
+
 	var params = {'username': req.query.u};
 	userRepository.findUser(params, function(ex, item) {
 		if (ex) return logger.error(ex);
@@ -34,7 +35,10 @@ router.get('/sendmail', function(req, res, next) {
 		item.token_tx = token_tx;
 		userRepository.updateUser({username: item.username}, item, function(ex, user) {
 			if (ex) return logger.error(ex);
-			mailHelper.sendMail("21156929@qq.com", "激活邮件", "<html><a href=\"http://192.168.214.138:3000/index/active?token="+ token + "\">" + token + "</a></html>");
+            var to = "21156929@qq.com";
+            var caption = "激活邮件";
+            var content = "<html><a href=\"http://192.168.214.138:3000/index/active?token="+ token + "\">" + token + "</a></html>"
+			mailHelper.sendMail(to, caption, content);
 		});
 	});
 });
