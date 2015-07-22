@@ -8,7 +8,7 @@ conn.on('error', console.error.bind(console, 'connection error:'));
 
 
 exports.User = conn.model('User', require('./user'));
-
+exports.Topic = conn.model('Topic', require('./topic'));
 
 
 

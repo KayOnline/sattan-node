@@ -17,7 +17,6 @@ router.use(function(req, res, next) {
 		ip: req.ip
 	}
 
-	logger.debug(req.originalUrl);	
 
 	// 异步接口调用频次控制
 	if (req.xhr && req.originalUrl) {
@@ -25,12 +24,10 @@ router.use(function(req, res, next) {
 		var now = Date.now();
 		var uid = req.session.uid;
 
-		logger.debug(key);	
-
 		if (key.indexOf('/login') == -1) {
 			client.zscore(key, uid, function(ex, lastInvokedTime) {
 				if (ex) return logger.error(ex);
-				if (lastInvokedTime && (now - lastInvokedTime < 100000)) {
+				if (lastInvokedTime && (now - lastInvokedTime < config.limit.xhr_limit)) {
 					return res.status(200).json({code: 1, msg:"您的操作过于频繁!"});
 				}
 				client.zadd(key, now, uid);
@@ -39,8 +36,10 @@ router.use(function(req, res, next) {
 	}
 
 	// 登录检测
-	if (req.baseUrl.indexOf('reg') > -1 ||
-		req.baseUrl.indexOf('login') > -1) {
+	if (req.baseUrl.indexOf('reg') > -1 
+	 || req.baseUrl.indexOf('login') > -1 
+	 //|| req.baseUrl.indexOf('topic') > -1
+		) {
 		return next();
 	}
 

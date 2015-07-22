@@ -20,5 +20,8 @@ module.exports = {
     redis: {
         host: '127.0.0.1',
         port: 6380
+    },
+    limit: {
+        xhr_limit: 1000 // 异步接口调用频次限制
     }
 };

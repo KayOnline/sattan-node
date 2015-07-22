@@ -22,33 +22,33 @@
   <div class="container">
     <div class="row">
       <div id="content" class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-heading">用户列表</div>
-            <div class="panel-body">
-              <table class="table table-bordered table table-hover">
-                <tr>
-                  <th>用户名</th>
-                  <th>用户邮箱</th>
-                  <th>是否激活</th>
-                  <th>创建日期</th>
-                  <th>更新日期</th>
-                  <th>个人头像</th>
-                  <th>操作</th>
-                </tr>
-                <% items.forEach(function(item) { %>
-                <tr>
-                  <td><%= item.username%></td>
-                  <td><%= item.email%></td>
-                  <td><%= item.activeStr%></td>
-                  <td><%= item.createTimeStr%></td>
-                  <td><%= item.updateTimeStr%></td>
-                  <td><a href="<%= item.avatar_url%>" target="_blank" ><img src="<%= item.avatar_url%>" ></a></td>
-                  <td><a href="javascript:void(0);" class="btn btn-primary btn-xs send-mail <% if (item.active) { %>disabled<% } %>">激活<a></td>
-                </tr>
-                <% }); %>
-              </table>
-            </div>
-        </div>
+      <% posts.forEach(function(item) { %>
+      <article id="52" class="post tag-laravel-5-1 tag-artisan">
+
+          <div class="post-head">
+              <h1 class="post-title"><a href="/post/install-and-run-laravel-5-x-on-windows/"><%= item.title%></a></h1>
+              <div class="post-meta">
+                  <span class="author">作者：<a href="/author/wangsai/">王赛</a></span> •
+                  <time class="post-date" datetime="2015年6月26日星期五下午4点15" title="2015年6月26日星期五下午4点15">2015年6月26日</time>
+              </div>
+          </div>
+          <div class="post-content">
+              <p><%- item.content%></p>
+          </div>
+          <div class="post-permalink">
+              <a href="/post/install-and-run-laravel-5-x-on-windows/" class="btn btn-default">阅读全文</a>
+          </div>
+
+          <footer class="post-footer clearfix">
+              <div class="pull-left tag-list">
+                  <i class="fa fa-folder-open-o"></i>
+                  <a href="/tag/laravel-5-1/">Laravel 5.1</a>, <a href="/tag/artisan/">Artisan</a>
+              </div>
+              <div class="pull-right share">
+              </div>
+          </footer>
+      </article>
+      <% }); %>
       </div>
       <div id="sidebar" class="col-md-3">
         <div class="panel panel-default">

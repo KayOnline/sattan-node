@@ -19,7 +19,6 @@ router.get('/', function(req, res, next) {
 			"session": req.session,
 			  "items": items
 		};
-		logger.error(req.session.avatar);
 	  	res.render('index', data);
 	});
 });

@@ -47,11 +47,13 @@ var reg = require("./routes/reg");
 var login = require('./routes/login');
 var index = require('./routes/index');
 var gate = require('./routes/gate');
+var post = require('./routes/post');
 app.use('/*', gate);
 app.use('/', index);
 app.use('/index', index);
 app.use('/login', login);
 app.use('/reg', reg);
+app.use('/post', post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
